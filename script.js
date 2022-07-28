@@ -96,6 +96,9 @@ getJsonDataStations(stationsFile) // Reads JSON file
     
     map.on('load', () => {
 
+      document.getElementById('load-title')
+        .innerHTML = 'Perfiles peatonales alrededor de las estaciones del Metro de Quito';
+
       map.loadImage(
       'img/maki-rail-15.png',
         (error, image) => {

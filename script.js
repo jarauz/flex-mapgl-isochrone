@@ -97,7 +97,7 @@ getJsonDataStations(stationsFile) // Reads JSON file
     map.on('load', () => {
 
       map.loadImage(
-      'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+      'img/maki-rail-15.png',
         (error, image) => {
           if (error) throw error;
         map.addImage('custom-marker', image)});

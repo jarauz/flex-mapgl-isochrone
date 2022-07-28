@@ -79,6 +79,14 @@ function addMapElements(){
     'source': 'point'+i,
     'layout': {
     'icon-image': 'custom-marker',
+    'text-field': stations.station[i].id,
+    'text-size': 12,
+    'text-font': [
+    'Open Sans Semibold',
+    'Arial Unicode MS Bold'
+    ],
+    'text-offset': [0, 1.25],
+    'text-anchor': 'top'
     }
     });
   

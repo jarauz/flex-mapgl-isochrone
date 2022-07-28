@@ -84,8 +84,8 @@ getJsonDataStations(stationsFile) // Reads JSON file
     map = new mapboxgl.Map({
       container: 'map-one',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-78.53, -0.25], // starting position
-      zoom: 12,
+      center: [-78.50, -0.19], // starting position
+      zoom: 13,
       pitch: 35
     });
 

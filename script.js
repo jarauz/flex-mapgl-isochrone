@@ -86,10 +86,13 @@ getJsonDataStations(stationsFile) // Reads JSON file
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [-78.50, -0.19], // starting position
       zoom: 13,
-      pitch: 35
+      pitch: 35,
+      bearing: -40
     });
 
     map.addControl(new mapboxgl.FullscreenControl());
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
     
     map.on('load', () => {
 

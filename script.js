@@ -24,7 +24,7 @@ for (let i = 0; i < isolines.length; i++) {
 
 
 // Size of stations dots
-const stationCircleSize = 5;
+const stationCircleSize = 8;
 
 
 

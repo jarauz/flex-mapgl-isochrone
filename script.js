@@ -9,16 +9,25 @@ console.log(orientation);
 // Variables to read and store json data with coordinates
 // and other config info
 const stationsFile = 'metro-stations.json';
-let isolines = [10 15 20]; // Iso lines at 10, 15 and 20 minutes
+const isolines = [10,15,20]; // Iso lines at 10, 15 and 20 minutes
+const isoOpacities = [0.3, 0.15, 0.1]; // Opacities for each region
 let stations={};
 let isochrone = {}; // Object that will all json data and polygons
 let polygonArray = [];   // Two dimensional 
-                        //array columns are isolines
-let srcArray = []; // Array of map source objects
-let layArray = []; // Array of map layer objects
+                        //array columns are isolines also vars
+                        //to keep track of show/hide layers
+let showHideLayers=[]
+for (let i = 0; i < isolines.length; i++) {
+  polygonArray[i] = [];
+  showHideLayers[i] = true;
+}
+
 
 // Size of stations dots
 const stationCircleSize = 5;
+
+
+
 
 
 
@@ -49,22 +58,20 @@ async function getIsochrone(){
   // Takes the coordinates obtained after 
   // calling getJsonDataStations and returns all polygons in 
   // an array of objects
-  for (let j=0; j<isolines.length; j+=) { 
+  for (let j=0; j<isolines.length; j++) { 
       for (let i=0; i<stations.station.length; i++){
         const coordinates = stations.station[i].coord;
-        const query = await 
-    fetch(`https://api.mapbox.com/isochrone/v1/mapbox/walking/${coordinates[0]},${coordinates[1]}?contours_minutes=${isolines[j]}&polygons=true&denoise=1&access_token=${mapboxgl.accessToken}`, { method: 'GET'}
+        
+        const query = await fetch(`https://api.mapbox.com/isochrone/v1/mapbox/walking/${coordinates[0]},${coordinates[1]}?contours_minutes=${isolines[j]}&polygons=true&denoise=1&access_token=${mapboxgl.accessToken}`, { method: 'GET'}
         );
-        const json = await query.json();
-        polygonArray[i,j]=json;
+        let json = await query.json();
+        polygonArray[j].push(json);
       } // end for i
   } // end for j
-  
 }
 
 function getCoordinates(index, isoindex){
-  return(polygonArray[index,
-         isoindex].features[0].geometry.coordinates);
+  return(polygonArray[isoindex][index].features[0].geometry.coordinates);
   
 }
 
@@ -77,9 +84,9 @@ getJsonDataStations(stationsFile) // Reads JSON file
     map = new mapboxgl.Map({
       container: 'map-one',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-78.5, -0.2], // starting position
+      center: [-78.53, -0.25], // starting position
       zoom: 12,
-      pitch: 0
+      pitch: 35
     });
 
     map.addControl(new mapboxgl.FullscreenControl());
@@ -88,9 +95,33 @@ getJsonDataStations(stationsFile) // Reads JSON file
 
       addMapElements();
 
-
-
- 
+     document.getElementById('10min').
+        addEventListener('click', () => {
+        // Mostrar y ocultar poligonos
+        showHideLayers[0]=!showHideLayers[0];
+        if (!showHideLayers[0])
+            removeLayer(0);
+        else
+            showLayer(0);
+        }); // end event listener 10 min
+     document.getElementById('15min').
+        addEventListener('click', () => {
+        // Mostrar y ocultar poligonos
+        showHideLayers[1]=!showHideLayers[1];
+        if (!showHideLayers[1])
+            removeLayer(1);
+        else
+            showLayer(1);
+        }); // end event listener 10 min
+      document.getElementById('20min').
+        addEventListener('click', () => {
+        // Mostrar y ocultar poligonos
+        showHideLayers[2]=!showHideLayers[2];
+        if (!showHideLayers[2])
+            removeLayer(2);
+        else
+            showLayer(2);
+        }); // end event listener 10 min
 
 
 

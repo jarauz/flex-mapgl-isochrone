@@ -1,19 +1,19 @@
 const colors=[
   'LightCoral',
   'DarkOrange',
-  'LimeGreen',
+  'Magenta',
   'SteelBlue',
   'LightCoral',
   'DarkOrange',
-  'LimeGreen',
+  'Magenta',
   'SteelBlue',
   'LightCoral',
   'DarkOrange',
-  'LimeGreen',
+  'Magenta',
   'SteelBlue',
   'LightCoral',
   'DarkOrange',
-  'LimeGreen',
+  'Magenta',
   'SteelBlue'
 ];
 
@@ -23,7 +23,7 @@ function addMapElements(){
         // Add sources and layers to the map
         id = stations.station[i].id
         
-        map.addSource(id, {
+        map.addSource(id+i+j, {
         'type': 'geojson',
         'data': {
         'type': 'Feature',
@@ -36,25 +36,25 @@ function addMapElements(){
         });
       
         map.addLayer({
-          'id': id,
+          'id': id+i+j,
           'type': 'fill',
-          'source': id, // reference the data source
+          'source': id+i+j, // reference the data source
           'layout': {},
           'paint': {
           'fill-color': colors[i], // blue color fill
-          'fill-opacity': 0.3
+          'fill-opacity': isoOpacities[j]
         }
         });
         // Add a black outline around the polygon.
         map.addLayer({
-          'id': 'outlineLyr'+i,
+          'id': 'outlineLyr'+i+j,
           'type': 'line',
-          'source': id,
+          'source': id+i+j,
           'layout': {},
           'paint': {
           'line-color': colors[i],
-          'line-width': 3,
-          'line-opacity': 0.8
+          'line-width': 2,
+          'line-opacity': 0.4
         }
         });
           
@@ -84,21 +84,54 @@ function addMapElements(){
       }
     });
   
-    map.addLayer({
-    'id': 'textLyr'+i,
-    'type': 'symbol',
-    'source': 'point'+i,
-    'layout': {
-      'text-field': 'abc',
-      'text-opacity': 0.5
-  
-      }
-    });
     
   } // end for i
 
   
-  
+
 }
 
+function removeLayer(lyr){
+  let j=lyr;
+    for (let i=0; i<stations.station.length; i++){
+        // Add sources and layers to the map
+        id = stations.station[i].id
+        
+      
+        map.removeLayer(id+i+j);
+        map.removeLayer('outlineLyr'+i+j)        
+    } // end for i
+}
+
+function showLayer(lyr){
+  let j=lyr;
+    for (let i=0; i<stations.station.length; i++){
+        // Add sources and layers to the map
+        id = stations.station[i].id
+      
+        map.addLayer({
+          'id': id+i+j,
+          'type': 'fill',
+          'source': id+i+j, // reference the data source
+          'layout': {},
+          'paint': {
+          'fill-color': colors[i], // blue color fill
+          'fill-opacity': isoOpacities[j]
+        }
+        });
+        // Add a black outline around the polygon.
+        map.addLayer({
+          'id': 'outlineLyr'+i+j,
+          'type': 'line',
+          'source': id+i+j,
+          'layout': {},
+          'paint': {
+          'line-color': colors[i],
+          'line-width': 2,
+          'line-opacity': 0.4
+        }
+        });  
+      
+    } // end for i
+}
 

@@ -1,0 +1,65 @@
+{
+  "station":
+  [
+    {
+      "id": "El Labrador",
+      "coord": [-78.486778,-0.154639]
+    },
+    {
+      "id": "Jipijapa",
+      "coord": [-78.483763,-0.164505]
+    },
+    {
+      "id": "Iñaquito",
+      "coord": [-78.483316,-0.177120]
+    },
+    {
+      "id": "La Carolina",
+      "coord": [-78.485943,-0.190298]
+    },
+    {
+      "id": "La Pradera",
+      "coord": [-78.492306,-0.193929]
+    },
+    {
+      "id": "Universidad Central",
+      "coord": [-78.500124,-0.198210]
+    },
+    {
+      "id": "El Ejido",
+      "coord": [-78.497636,-0.208957]
+    },
+    {
+      "id": "La Alameda",
+      "coord": [-78.501900,-0.215397]
+    },
+    {
+      "id": "San Francisco",
+      "coord": [-78.514508,-0.220646]
+    },
+    {
+      "id": "La Magdalinea",
+      "coord": [-78.524075,-0.239040]
+    },
+    {
+      "id": "El Recreo",
+      "coord": [-78.521352,-0.253622]
+    },
+    {
+      "id": "Cardenal De La Torre",
+      "coord": [-78.532978,-0.257340]
+    },
+    {
+      "id": "Solanda",
+      "coord": [-78.535602,-0.265613]
+    },
+    {
+      "id": "Morán Valverde",
+      "coord": [-78.549036,-0.281082]
+    },
+    {
+      "id": "Quitumbe",
+      "coord": [-78.556072,-0.294818]
+    }
+  ]
+}

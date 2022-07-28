@@ -96,9 +96,15 @@ getJsonDataStations(stationsFile) // Reads JSON file
     
     map.on('load', () => {
 
+      map.loadImage(
+      'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+        (error, image) => {
+          if (error) throw error;
+        map.addImage('custom-marker', image)});
+
       addMapElements();
 
-     document.getElementById('10min').
+      document.getElementById('10min').
         addEventListener('click', () => {
         // Mostrar y ocultar poligonos
         showHideLayers[0]=!showHideLayers[0];

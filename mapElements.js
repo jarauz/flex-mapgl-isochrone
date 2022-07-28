@@ -75,13 +75,11 @@ function addMapElements(){
       
     map.addLayer({
     'id': 'pointLyr'+i,
-    'type': 'circle',
+    'type': 'symbol',
     'source': 'point'+i,
-    'paint': 
-      {
-        'circle-radius': stationCircleSize,
-        'circle-color': 'grey'
-      }
+    'layout': {
+    'icon-image': 'custom-marker',
+    }
     });
   
     
